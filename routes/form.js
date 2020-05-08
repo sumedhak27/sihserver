@@ -6,6 +6,7 @@ let path = require('path')
 
 let storeForm = require('../components/form/storeForm.js');
 let fetchForm = require('../components/form/fetchForm.js');
+let setPassword = require('../components/form/setPassword');
 
 let collectionNames = {};
 let getCollectionNames = function (names) {
@@ -20,13 +21,17 @@ router.post('/storeForm',function (req,res) {
 	console.log('Storing form to mongo db');
 	console.log(req.body);
 	storeForm.storeForm(collectionNames,req,res);
-  // res.send("1")
 });
 
 router.post('/fetchForm',function(req,res) {
 	console.log("fetching form router");
 	fetchForm.fetchForm(collectionNames,req,res);
 });
+
+router.post('/setPassword',(req, res) => {
+	console.log("Setting password for the new Applicant.");
+	setPassword.setPassword(collectionNames, req, res);
+})
 
 module.exports = router;
 module.exports.getCollectionNames = getCollectionNames;

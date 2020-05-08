@@ -35,14 +35,4 @@ exports.storeForm = function (collectionNames,req,res) {
         res.send({status : -1, msg : err});
     }); 
     
-    /*ApplicantDetails.insertOne(details,function (err,result) {
-        if (err) {
-            console.log('Error in inserting into db');
-            throw err;
-        }
-        console.log('Details Stored Successfully : ' + result);
-        res.send({status : 1});
-    });
-    */
-
 };
