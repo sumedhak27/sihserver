@@ -1,9 +1,8 @@
 let collectionNames = {};
 class Collections {
 	static initCollections(db) {
-        collectionNames.UserDetails = db.collection('UserDetails');
+        collectionNames.ApplicantDetails = db.collection('ApplicantDetails');
         collectionNames.Results = db.collection('Results')
-        collectionNames.FormDetails = db.collection('FormDetails')
 	}
 }
 module.exports.collectionNames = collectionNames;
