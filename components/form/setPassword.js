@@ -4,7 +4,7 @@ exports.setPassword = (CollectionNames, req, res) => {
         console.log(result);
         res.send({
             status : 1,
-            msg : "Password set Successfully. Applicant registration completed."
+            msg : "Password set Successfully 🎉. Applicant registration completed. ✔"
         });
     })
     .catch(err => {
