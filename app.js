@@ -12,6 +12,9 @@ let collectionConfig = require('./config/collectionConfig');
 
 let indexRouter = require('./routes/index');
 let formRouter =  require('./routes/form');
+let loginRouter = require('./routes/login');
+let adminRouter = require('./routes/admin');
+let documentRouter = require('./routes/documents');
 
 let app = express();
 let db = {};
@@ -34,7 +37,10 @@ app.use(session({
 	resave: true
 }));
 app.use('/', indexRouter);
-app.use('/form',formRouter);
+app.use('/login', loginRouter);
+app.use('/form', formRouter);
+app.use('/admin', adminRouter);
+app.use('/document', documentRouter);
 
 app.use(function (req, res, next) {
 	next(createError(404));
@@ -62,12 +68,16 @@ mongo.connect(dbConfig.URI, {
 	if (err) {
 		console.log('Error in connecting to db ' + err);
 		throw err;
-	} else {
+	}
+	else {
 		db = client.db(dbConfig.dbName);
 		console.log('Connected to db : ' + db);
 		let Collections = collectionConfig.Collections;
 		Collections.initCollections(db);
 		formRouter.getCollectionNames(collectionConfig.collectionNames);
+		loginRouter.getCollectionNames(collectionConfig.collectionNames);
+		adminRouter.getCollectionNames(collectionConfig.collectionNames);
+		documentRouter.getCollectionNames(collectionConfig.collectionNames);
 	}
 });
 
